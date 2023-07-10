@@ -1,0 +1,11 @@
+/* Add global styles as neede here */
+:root {
+  --dark-gray: #333;
+  --light-gray: rgb(221, 221, 221);
+  --light-green: rgb(176, 203, 173);
+}
+
+#app {
+  font-family: sans-serif;
+  padding: 24px;
+}
