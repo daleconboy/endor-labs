@@ -1,18 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import styles from "./TodoComponent.module.css";
 import classNames from "classnames";
-import type { User, Todo } from "../data/types";
+import type { Todo } from "../data/types";
 import { TagsContext } from "./contexts/TagsContext";
 import { TodoList } from "./TodoList/TodoList";
 import { Button, InputField, SelectField } from "./FormElements/FormElements";
 import { TodoCard } from "./TodoCard/TodoCard";
-
-interface TodoComponentProps {
-  userId: string;
-}
-
-const USER_QUERY = "/api/users?filter=spec.name==";
-const TODOS_QUERY = "/api/todos?filter=spec.user_id==";
+import { useTodos, useTodosDispatch, } from "./contexts/TodosContext";
 
 /**
  * Applies the singular or plural version of a word based on provided qty
@@ -30,34 +24,11 @@ function todoHeading (todos: Todo[] | null): string {
   return `${qty} ${pluralize("Item", "Items", qty)}`;
 }
 
-export const TodoComponent = (
-  { userId }: TodoComponentProps
-): React.ReactNode => {
-  // const [userData, setUserData] = useState<User | null>(null);
-  const [todos, setTodos] = useState<Todo[] | null>(null);
+export const TodoComponent = (): React.ReactNode => {
+  const todos = useTodos();
+  const todosDispatch = useTodosDispatch();
   const tags = useContext(TagsContext);
 
-  useEffect(() => {
-    // use abort controller for fetch to cancel any pending requests on unmount
-    const controller = new AbortController();
-    const signal = controller.signal;
-
-    async function getTodos (id: string): Promise<void> {
-      console.log("requesting", `${TODOS_QUERY}${id}`);
-      const response = await fetch(`${TODOS_QUERY}${id}`, { signal });
-      const json = await response.json();
-      console.log("json", json);
-      setTodos(() => json.list);
-    }
-
-    getTodos(userId).catch(e => {});
-
-    return () => {
-      controller.abort();
-    }
-  }, [userId]);
-
-  console.log("user data", todos);
   return (
     <div>
       <h2 className={styles.appHeading}>Todo App</h2>
@@ -69,7 +40,7 @@ export const TodoComponent = (
         </fieldset>
         <div className={styles.grid}>
           <TodoCard title={todoHeading(todos)} className={styles.pending}>
-            <TodoList todos={todos} />
+            <TodoList todos={todos} tags={tags} />
           </TodoCard>
 
           <TodoCard title="1 Completed" className={styles.completed}>
