@@ -1,0 +1,36 @@
+.appHeading {
+  font-size: 18px;
+}
+
+.fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.inputFields {
+  margin-bottom: 15px;
+}
+
+.grid {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pending {
+  background: #ddd;
+}
+
+.completed {
+  background: #b1cbac; }
+
+.completed li {
+  text-decoration: line-through;
+}
+
+.completedList {
+  margin: 0;
+  padding: 0 0 0 1.7em;
+  font-size: 9px;
+}
