@@ -1,0 +1,40 @@
+.button {
+  border: 1px solid #878787;
+  background: #efefef;
+  border-radius: 2px;
+  font-size: 9px;
+  cursor: pointer;
+}
+
+.field {
+  margin-bottom: 8px;
+}
+
+.field p {
+  margin: 0 0 1px;
+}
+
+.inputLike {
+  padding: 2px 4px;
+  border: 1px solid #878787;
+  border-radius: 2px;
+  font-size: 9px;
+  background: none;
+  width: 230px;
+  display: block;
+  box-sizing: border-box;
+}
+
+.fieldLabel {
+  font-size: 10px;
+}
+
+.select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgMjk4Ij4KICA8ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiBpbWFnZS1yZW5kZXJpbmc9Im9wdGltaXplUXVhbGl0eSIgc2hhcGUtcmVuZGVyaW5nPSJnZW9tZXRyaWNQcmVjaXNpb24iIHRleHQtcmVuZGVyaW5nPSJnZW9tZXRyaWNQcmVjaXNpb24iPgogICAgPHBhdGggc3R5bGU9ImZpbGw6ICM2ZTZlNmU7IiBkPSJtMTIuMTEsNzAuNzdDLTQuMDYsNTQuNTMtMy45OCwyOC4yNCwxMi4yNiwxMi4wOGMxNi4yNS0xNi4xNyw0Mi41My0xNi4wOSw1OC43LjE1bDE4NS4wNCwxODUuNTFMNDQxLjA0LDEyLjIzYzE2LjE3LTE2LjI0LDQyLjQ1LTE2LjMyLDU4LjctLjE1LDE2LjI0LDE2LjE2LDE2LjMyLDQyLjQ1LjE1LDU4LjY5bC0yMTQuNjIsMjE1LjE1Yy0xNi4yNCwxNi4xNy00Mi41MywxNi4wOS01OC42OS0uMTVMMTIuMTEsNzAuNzdaIi8+CiAgPC9nPgo8L3N2Zz4K");
+  background-size: auto 4px;
+  background-repeat: no-repeat;
+  background-position: calc(100% - 3px) 50%;
+  cursor: pointer;
+  display: block;
+}
