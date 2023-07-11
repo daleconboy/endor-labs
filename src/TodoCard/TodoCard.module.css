@@ -1,0 +1,10 @@
+.itemContainer {
+  padding: 12px;
+  border-radius: 5px;
+  width: 250px;
+}
+
+.itemHeader {
+  margin: 0 0 6px;
+  font-size: 13px;
+}

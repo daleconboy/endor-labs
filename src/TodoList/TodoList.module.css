@@ -1,0 +1,41 @@
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 11px;
+}
+
+.item {
+  margin: 0;
+  padding: 0;
+  /* display: grid; */
+}
+
+.todo {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 9px;
+}
+
+.checkbox {
+  appearance: none;
+  margin: 0;
+  border: 1px solid #878787;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.checkbox:checked {
+  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPHN2ZyBoZWlnaHQ9IjgwMHB4IiB3aWR0aD0iODAwcHgiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMzIgMzIiPg0KPGc+DQogIDxnPg0KICAgIDxnPg0KICAgICAgPHBvbHlnb24gc3R5bGU9ImZpbGw6IzAzMDEwNDsiIHBvaW50cz0iMTEuOTQxLDI4Ljg3NyAwLDE2LjkzNSA1LjY5NSwxMS4yNCAxMS45NDEsMTcuNDg2IDI2LjMwNSwzLjEyMyAzMiw4LjgxOCIvPg0KICAgIDwvZz4NCiAgPC9nPg0KPC9nPg0KPC9zdmc+DQo=");
+  background-size: 7px auto;
+  background-repeat: no-repeat;
+}
+
+.label {
+  margin-left: 4px;
+  cursor: pointer;
+}
