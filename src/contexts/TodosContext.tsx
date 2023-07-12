@@ -62,7 +62,6 @@ export function TodosProvider({
     let ignore = false;
 
     async function getTodos(id: string): Promise<void> {
-      console.log("requesting", `${TODOS_QUERY}${id}`);
       const response = await fetch(`${TODOS_QUERY}${id}`);
       const json = await response.json();
 

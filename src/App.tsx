@@ -1,4 +1,4 @@
-import { TodoComponent } from "./TodoComponent";
+import { TodoWithLoading } from "./TodoComponent/TodoWithLoading";
 import { TagsProvider } from "./contexts/TagsContext";
 import { TodosProvider } from "./contexts/TodosContext";
 import styles from "./App.module.css";
@@ -14,7 +14,7 @@ export const App = () => {
       <TodosProvider USER_ID={TODO_USER_ID}>
         <TagsProvider>
           <h2 className={styles.appHeading}>Todo App</h2>
-          <TodoComponent userId={TODO_USER_ID} />
+          <TodoWithLoading userId={TODO_USER_ID} />
         </TagsProvider>
       </TodosProvider>
     </div>
