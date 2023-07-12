@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./TodoComponent.module.css";
 import classNames from "classnames";
 import type { Todo } from "../data/types";
@@ -9,35 +9,23 @@ import { TodoCard } from "./TodoCard/TodoCard";
 import { useTodos, useTodosDispatch, } from "./contexts/TodosContext";
 import { CompletedTodoList } from "./CompletedTodoList/CompletedTodoList";
 import { createTodo } from "./lib/todoClient";
+import { pluralize } from "./lib/formatters";
+
 
 /**
- * Applies the singular or plural version of a word based on provided qty
+ * Finds all completed todos
  */
-function pluralize(singular: string, plural: string, qty: number): string {
-  return qty === 1 ? singular : plural;
-}
-
-/**
- * Constructs a heading that reflects the number of todos
- * If null, 0 will be used
- */
-function todoHeading (todos: Todo[] | null): string {
-  const qty = todos?.length ?? 0;
-  return `${qty} ${pluralize("Item", "Items", qty)}`;
-}
-
 function getCompleted(todos: Todo[]): number {
   return todos.filter(todo => Boolean(todo.spec.completed_time)).length;
-}
-
-function completedHeading(todos: Todo[]): string {
-  return `${getCompleted(todos)} Completed`;
 }
 
 interface TodoComponentProps {
   userId: string;
 }
 
+/**
+ * The main todo component
+ */
 export function TodoComponent({ userId }: TodoComponentProps ): React.ReactNode {
   const todos = useTodos();
   const todosDispatch = useTodosDispatch();
@@ -75,17 +63,23 @@ export function TodoComponent({ userId }: TodoComponentProps ): React.ReactNode 
                 options={tags}
                 onChange={e => setSelectedTag(e.target.value)}
               />
-              <Button disabled={todoText === ""} onClick={handleClick} >
+              <Button disabled={todoText === ""} onClick={handleClick}>
                 Add
               </Button>
             </fieldset>
 
             <div className={styles.grid}>
-              <TodoCard title={todoHeading(todos)} className={styles.pending}>
+              <TodoCard
+                title={pluralize(todos.length, "Item", "Items")}
+                className={styles.pending
+              }>
                 <TodoList todos={todos} tags={tags} />
               </TodoCard>
 
-              <TodoCard title={completedHeading(todos)} className={styles.completed}>
+              <TodoCard
+                title={`${getCompleted(todos)} Completed`}
+                className={styles.completed}
+              >
                 <CompletedTodoList todos={todos} />
               </TodoCard>
             </div>

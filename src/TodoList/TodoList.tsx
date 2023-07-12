@@ -4,7 +4,7 @@ import styles from "./TodoList.module.css"
 import { updateTodo } from "../lib/todoClient";
 import { useTodosDispatch, } from "../contexts/TodosContext";
 import type { Action } from "../contexts/TodosContext";
-
+import { formatTagString, extractTags } from "../lib/formatters";
 
 /**
  * Curried function to capture the dispatcher since it's only
@@ -34,29 +34,13 @@ const handleOnChangeWith =
     };
 
 
-
 /**
- * Finds the tag's value for the given ID
+ * Formats the todo text for the labels
  */
-function findTag(id: string, tagIds: TagsData): string | undefined {
- const found = tagIds?.find((tag) => tag.id == id)?.value ?? undefined;
- return found;
+function formatItemText(text: string, tags: TagsData, tagIds: string[]): string {
+  return [text, formatTagString(extractTags(tagIds, tags))].join(" ");
 }
 
-/**
- * formats the item's string to display tags if they exist
- * e.g. File Taxes (Personal, Pending)
- */
-function formatItemText(
-  note: string,
-  tags: TagsData,
-  tagIds?: string[]
-): string {
-
-  const tagNames = tagIds?.map(id => findTag(id, tags)).join(", ") ?? "";
-  const tagString = tagNames === "" ? "" : ` (${tagNames})`;
-  return `${note}${tagString}`;
-}
 
 interface TodoListProps {
   todos: Todo[] | null;
@@ -74,7 +58,7 @@ export function TodoList({ todos, tags }: TodoListProps): React.ReactElement {
   return (
     <ul className={styles.list}>
       {todos?.map(({ id, spec }) => {
-          const text= formatItemText(spec.note, tags, spec.tag_ids);
+          const text= formatItemText(spec.note, tags, spec.tag_ids ?? []);
           return (
             <li className={styles.item} key={id}>
               <input
