@@ -1,5 +1,4 @@
 declare const styles: {
-  readonly "appHeading": string;
   readonly "fieldset": string;
   readonly "inputFields": string;
   readonly "grid": string;

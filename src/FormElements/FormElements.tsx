@@ -4,8 +4,8 @@ import classNames from "classnames";
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-export function Button({ children }: ButtonProps): React.ReactElement {
-  return <button className={styles.button}>{children}</button>;
+export function Button({ children, ...rest }: ButtonProps): React.ReactElement {
+  return <button {...rest} className={styles.button}>{children}</button>;
 }
 
 
@@ -16,14 +16,15 @@ type InputFieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
 
 export function InputField({
   className,
-  labelText
+  labelText,
+  ...rest
 }: InputFieldProps): React.ReactElement {
   return (
     <div className={classNames(styles.field, className)}>
       <p>
         <label className={styles.fieldLabel} htmlFor="todo-name">{labelText}</label>
       </p>
-      <input className={styles.inputLike} type="text" id="todo-name"></input>
+      <input {...rest} className={styles.inputLike} type="text" id="todo-name"></input>
     </div>
   );
 }
@@ -37,14 +38,15 @@ export type SelectFieldProps = React.SelectHTMLAttributes<HTMLSelectElement> & {
 export function SelectField({
   className,
   options,
-  labelText
+  labelText,
+  ...rest
 }: SelectFieldProps): React.ReactElement {
   return (
     <div className={classNames(styles.field, className)}>
       <p>
         <label className={styles.fieldLabel} htmlFor="todo-tags">{labelText}</label>
       </p>
-      <select className={classNames(styles.inputLike, styles.select)} id="todo-tags">
+      <select {...rest} className={classNames(styles.inputLike, styles.select)} id="todo-tags">
         {options.map(
           ({id, value}) => <option value={id} key={id}>{value}</option>
         )}
