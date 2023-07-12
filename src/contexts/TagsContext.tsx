@@ -1,4 +1,5 @@
-import { createContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { getTags } from "../lib/todoClient";
 
 interface TagsObject {
   id: string;
@@ -7,4 +8,48 @@ interface TagsObject {
 
 export type TagsData = TagsObject[];
 
-export const TagsContext = createContext<TagsData>([]);
+const TagsContext = createContext<TagsData>([]);
+
+export function useTags() {
+  return useContext(TagsContext);
+}
+
+interface TagsProviderProps {
+  children: React.ReactNode;
+}
+
+export function TagsProvider({
+  children
+}: TagsProviderProps): React.ReactElement {
+  const [tags, setTags] = useState<TagsData>([]);
+
+  useEffect(() => {
+    let ignore = false;
+
+    async function fetchTags (): Promise<void> {
+      const tagsData = await getTags();
+      if (!ignore && !tags.length) {
+        setTags(() => {
+          return tagsData.map((tag) => {
+            return {
+              id: tag.id,
+              value: tag.spec.value
+            }
+          });
+        });
+      }
+    }
+
+    fetchTags().catch(e => {});
+
+    return () => {
+      ignore = true;
+    }
+  });
+
+  return (
+    <TagsContext.Provider value={tags}>
+      {children}
+    </TagsContext.Provider>
+  )
+}

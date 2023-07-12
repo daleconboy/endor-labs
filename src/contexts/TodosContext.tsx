@@ -1,11 +1,10 @@
 import React from "react";
-import { createContext, useContext, useReducer } from "react";
-import type { Todo } from "../../data/types";
+import { createContext, useContext, useReducer, useEffect } from "react";
+import type { Todo, Todos } from "../lib/todoClient";
 
 const TodosContext = createContext<Todo[]>([]);
 const TodosDispatchContext = createContext<React.Dispatch<Action> | null>(null);
 
-export type Todos = Todo[];
 export type ActionType = "CREATE" | "UPDATE";
 
 export const UPDATE_ACTION: ActionType = "UPDATE";
@@ -48,14 +47,40 @@ export function useTodosDispatch() {
 
 interface TodosProviderProps {
   children: React.ReactNode;
-  value?: Todos;
+  USER_ID: string;
 }
 
-export function TodosProvider({ children, value = [] }: TodosProviderProps) {
-  const [, dispatch] = useReducer(todosReducer, value);
+const TODOS_QUERY = "/api/todos?filter=spec.user_id==";
+
+export function TodosProvider({
+  children,
+  USER_ID
+}: TodosProviderProps): React.ReactElement {
+  const [todos, dispatch] = useReducer(todosReducer, []);
+
+  useEffect(() => {
+    let ignore = false;
+
+    async function getTodos (id: string): Promise<void> {
+      console.log("requesting", `${TODOS_QUERY}${USER_ID}`);
+      const response = await fetch(`${TODOS_QUERY}${USER_ID}`);
+      const json = await response.json();
+
+      if (!ignore && !todos.length) {
+        json.list.forEach((todo: Todo) => dispatch({ type: "CREATE", data: todo}))
+      }
+    }
+
+    getTodos(USER_ID).catch(e => {});
+
+    return () => {
+      ignore = true;
+    }
+  }, [USER_ID]);
+
 
   return (
-    <TodosContext.Provider value={value}>
+    <TodosContext.Provider value={todos}>
       <TodosDispatchContext.Provider value={dispatch}>
         {children}
       </TodosDispatchContext.Provider>
