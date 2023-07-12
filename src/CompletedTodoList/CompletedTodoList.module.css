@@ -1,0 +1,9 @@
+.list {
+  margin: 0;
+  padding: 0 0 0 1.7em;
+  font-size: 9px;
+}
+
+.list li {
+  text-decoration: line-through;
+}
