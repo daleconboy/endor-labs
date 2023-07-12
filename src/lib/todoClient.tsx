@@ -9,7 +9,6 @@ const USER_TODOS_ROUTE = `${TODOS_ROUTE}?filter=spec.user_id==`;
 const TAGS_ROUTE = "/api/tags";
 
 type PutMethod = "POST" | "PATCH";
-type GetMethod = "GET";
 
 const HEADERS = {
   "Content-type": "application/json; charset=UTF-8"
@@ -50,23 +49,35 @@ function makeUpdateConfig(spec: UpdateSpec): Config {
   return configObj({ method: "PATCH", spec });
 }
 
+/**
+ * Fetches all tags data
+ */
 export async function getTags(): Promise<Tag[]> {
   const response = await fetch(TAGS_ROUTE);
   const json = await response.json();
   return json.list;
 }
 
+/**
+ * Fetches all todo data for given user
+ */
 export async function getTodos(user_id: string): Promise<Todos> {
   const response = await fetch(`${USER_TODOS_ROUTE}${user_id}`);
   const json = await response.json();
   return json.list;
 }
 
+/**
+ * Creates a new todo record
+ */
 export async function createTodo(data: CreateSpec): Promise<Todo> {
   const response = await fetch(TODOS_ROUTE, makeCreateConfig(data));
   return await response.json() as Todo;
 }
 
+/**
+ * Updates todo record for the given todo id
+ */
 export async function updateTodo(todoId: string, data: UpdateSpec): Promise<Todo> {
   const response = await fetch(`${TODOS_ROUTE}/${todoId}`, makeUpdateConfig(data));
   return await response.json() as Todo;

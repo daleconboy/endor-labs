@@ -61,9 +61,9 @@ export function TodosProvider({
   useEffect(() => {
     let ignore = false;
 
-    async function getTodos (id: string): Promise<void> {
-      console.log("requesting", `${TODOS_QUERY}${USER_ID}`);
-      const response = await fetch(`${TODOS_QUERY}${USER_ID}`);
+    async function getTodos(id: string): Promise<void> {
+      console.log("requesting", `${TODOS_QUERY}${id}`);
+      const response = await fetch(`${TODOS_QUERY}${id}`);
       const json = await response.json();
 
       if (!ignore && !todos.length) {

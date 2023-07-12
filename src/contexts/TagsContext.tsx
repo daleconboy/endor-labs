@@ -18,6 +18,9 @@ interface TagsProviderProps {
   children: React.ReactNode;
 }
 
+/**
+ * Fetches all tags up front and stores in this context
+ */
 export function TagsProvider({
   children
 }: TagsProviderProps): React.ReactElement {

@@ -14,6 +14,9 @@ type InputFieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
   labelText: string;
 }
 
+/**
+ * Input field plus a label
+ */
 export function InputField({
   className,
   labelText,
@@ -35,6 +38,9 @@ export type SelectFieldProps = React.SelectHTMLAttributes<HTMLSelectElement> & {
   labelText: string;
 }
 
+/**
+ * Select field plus a label. For the tag names
+ */
 export function SelectField({
   className,
   options,

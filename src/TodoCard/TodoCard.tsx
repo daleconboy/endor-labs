@@ -8,6 +8,9 @@ export interface TodoCardProps {
   className?: string;
 }
 
+/**
+ * Empty card container with a headline
+ */
 export function TodoCard({ children, title, className }: TodoCardProps): React.ReactElement {
   return (
     <div className={classNames(styles.itemContainer, className)}>
