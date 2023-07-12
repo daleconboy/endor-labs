@@ -1,13 +1,6 @@
 import type { TagsData } from "../contexts/TagsContext";
 
 /**
- * Appends `left` to `right`
- */
-export function append(left: string, right: string): string {
-  return `${left} ${right}`;
-}
-
-/**
  * Delivers a human friendly datetime string
  * e.g. 7/11/2023, 7:23:34 PM
  * `time` is expected to be an ISO date string

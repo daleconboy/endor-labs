@@ -9,6 +9,9 @@ interface CompletedTodoListProps {
  todos: Todos;
 }
 
+/**
+ * Finds all completed todos
+ */
 function getCompleted(todos: Todos): Todos {
   return todos.filter(todo => Boolean(todo.spec.completed_time));
 }
