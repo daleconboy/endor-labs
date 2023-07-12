@@ -2,6 +2,8 @@
 
 ## About my solution
 
+<img src="./todo-app.jpg" width="851" height="332" />
+
 ### State management
 
 I opted to use a traditional top-level context and a custom `useTags` hook to hold the state for the tags data and to make it accessible. This data was relatively simple, only needed to be fetched once, is never mutated, and is needed at various points in the tree.
