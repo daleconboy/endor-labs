@@ -16,7 +16,7 @@ worker.start();
 const root = createRoot(document.getElementById("app")!);
 root.render(
   <StrictMode>
-    <Instructions />
+    {/* <Instructions /> */}
     <App />
   </StrictMode>
 );
