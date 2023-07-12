@@ -12,13 +12,13 @@ For the todos data, I used a top-level context provider and dispatcher pattern, 
 
 ### API data fetching and mutation
 
-Initial data fetching takes place in the two contexts for tags and todos at which point it is store to state and made available for downstream consumers of the contexts.
+Initial data fetching takes place in the two contexts for tags and todos at which point it is stored to state and made available for downstream consumers of the contexts.
 
 Additionally the app is set up so that the toto UI won't render until all data is received. A simple "Loading..." indicator renders in the meantime.
 
 ### Styling
 
-CSS Modules were used exclusively for styling. The provide multiple benefits such as styling safety via their scoped classnames, none of the performance problems that css-in-js solutions have, ease of access and application in the TSX files, and they are also supported out of the box by Vite.
+CSS Modules were used exclusively for styling. They provide multiple benefits such as styling safety via their scoped classnames, none of the performance problems that css-in-js solutions have, ease of access and application in the TSX files, and they are also supported out of the box by Vite.
 
 Additionally PostCSS used in conjunction with CSS Modules can be quite powerful. However, it was not needed for this project.
 
@@ -26,7 +26,7 @@ Additionally PostCSS used in conjunction with CSS Modules can be quite powerful.
 
 There is one problem with CSS Modules, and that is related to the TypeScript support for them. There are few solutions out there to provide desirable functionality in this area. And the ones that do exist, are not seeing widespread use. This is assumedly a reflection of the fact that CSS Modules are not necessarily the most popular React-based styling solution at the moment.
 
-I oped to use the [typed-css-modules](https://www.npmjs.com/package/typed-css-modules) package to provide TS support. This package worked out well and also tied in nicely with Vite's watch mode. It also provides _full_ type safety for your CSS classes, since it continuously produces `.d.ts` files for your `.module.css` files. Which means that TypeScript will not allow you to access a classname that is not defined in the `.module.css` file.
+I opted to use the [typed-css-modules](https://www.npmjs.com/package/typed-css-modules) package to provide TS support. This package worked out well and also tied in nicely with Vite's watch mode. It also provides _full_ type safety for your CSS classes, since it continuously produces `.d.ts` files for your `.module.css` files. Which means that TypeScript will not allow you to access a classname that is not defined in the `.module.css` file.
 
 This full type safety is much better than some of the other solutions out there that provide more naive, generic `Record<string, string>` sorts of typings.
 
@@ -56,7 +56,7 @@ The base card-like container component for the _Pending_ and _Completed_ boxes. 
 
 #### [src/TodoComponent](./src/TodoComponent/)
 
-Houses two components — the primary higher-level component that is responsible for laying out all of the App's major UI pieces and handing the interactions. And the other component acts as an interstitial delegate to manage the `Loading...` state.
+Houses two components — the primary higher-level component that is responsible for laying out all of the App's major UI pieces and handling the interactions. And the other component acts as an interstitial delegate to manage the `Loading...` state.
 
 
 #### [src/TodoList](./src/TodoList/)
