@@ -49,7 +49,7 @@ Lower level components for the form elements
 
 A collection of string formatting utilities and a simple client collection for interacting with the API.
 
-#### [src/TodoCard](./src/TodoCArd/)
+#### [src/TodoCard](./src/TodoCard/)
 
 The base card-like container component for the _Pending_ and _Completed_ boxes. It also provides a header.
 
