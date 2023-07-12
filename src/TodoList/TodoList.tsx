@@ -1,7 +1,7 @@
 import { TagsData } from "../contexts/TagsContext";
 import type { Todo } from "./../../data/types";
 import styles from "./TodoList.module.css"
-import { updateTodo } from "../lib/todoClient";
+import { Todos, updateTodo } from "../lib/todoClient";
 import { useTodosDispatch, } from "../contexts/TodosContext";
 import type { Action } from "../contexts/TodosContext";
 import { formatTagString, extractTags } from "../lib/formatters";
@@ -43,8 +43,15 @@ function formatItemText(text: string, tags: TagsData, tagIds: string[]): string 
 
 
 interface TodoListProps {
-  todos: Todo[] | null;
+  todos: Todo[];
   tags: TagsData;
+}
+
+/**
+ * Finds incomplete todo items
+ */
+function getPending(todos: Todos): Todos {
+  return todos.filter(todo => !todo.spec.completed_time);
 }
 
 /**
@@ -55,9 +62,11 @@ export function TodoList({ todos, tags }: TodoListProps): React.ReactElement {
   const todosDispatch = useTodosDispatch();
   const handleOnChange = handleOnChangeWith(todosDispatch!);
 
+  const pending = getPending(todos);
+
   return (
     <ul className={styles.list}>
-      {todos?.map(({ id, spec }) => {
+      {pending.map(({ id, spec }) => {
           const text= formatItemText(spec.note, tags, spec.tag_ids ?? []);
           return (
             <li className={styles.item} key={id}>
