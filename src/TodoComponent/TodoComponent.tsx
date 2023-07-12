@@ -47,6 +47,9 @@ export function TodoComponent({ userId, todos, tags }: TodoComponentProps ): Rea
     todosDispatch!({ type: "CREATE", data: todo });
   }
 
+  const completedQty = getCompleted(todos);
+  const pendingQty = todos.length - completedQty;
+
   return (
     <div>
       <fieldset className={classNames(styles.fieldset, styles.inputFields)}>
@@ -68,7 +71,7 @@ export function TodoComponent({ userId, todos, tags }: TodoComponentProps ): Rea
 
       <div className={styles.grid}>
         <TodoCard
-          title={pluralize(todos.length, "Item", "Items")}
+          title={pluralize(pendingQty, "Item", "Items")}
           className={styles.pending
         }>
           <TodoList todos={todos} tags={tags} />

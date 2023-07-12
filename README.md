@@ -2,7 +2,7 @@
 
 ## About my solution
 
-<img src="./todo-app.jpg" width="851" height="332" />
+<img src="./todo-app.jpg" width="874" height="347" />
 
 ### State management
 
